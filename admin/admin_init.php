@@ -77,7 +77,7 @@ function secure() {
 
 function accessControl($user_role) {
     if( !secure()->hasUserAccess($user_role) ){
-        display_error('no access!');
+        display_error(lang()->get('common_no_access'));
         load_view();
         die();
     }
@@ -94,6 +94,7 @@ function lang() {
     return Language::getInstance();
 }
 
+lang()->addSystemLangFile('common');
 lang()->addSystemLangFile('sidebar');
 lang()->addSystemLangFile('topbar');
 
