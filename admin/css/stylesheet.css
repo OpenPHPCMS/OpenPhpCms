@@ -165,7 +165,7 @@ blockquote p {
 	display:inline;
 }
 /*Messages*/
-.succes {
+.success {
 	background: #50bd37;
 	padding:20px;
 	color:white;
