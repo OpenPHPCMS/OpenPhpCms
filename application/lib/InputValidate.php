@@ -29,6 +29,9 @@ class InputValidate {
     private $validatorTypes = array('numeric', 'alphabet' ,'alphanumeric', 'email', 'none');
     private $properties     = array('empty', 'minlength', 'maxlength');
 
+    public function __construct(){
+        lang()->addSystemLangFile('validate');
+    }
 
     /**
     * add
@@ -120,7 +123,7 @@ class InputValidate {
     */
     private function type_numeric($value){
         if(!is_numeric($value))
-            return "Not a valid number!";
+            return lang()->get('validate_type_numeric');
         return false;
     }
 
@@ -136,7 +139,7 @@ class InputValidate {
     */
     private function type_alphabet($value){
         if (preg_match("/[^a-zA-Z]/i", $value))
-            return "Not alphabetic!";
+            return lang()->get('validate_type_alphabet');
         return false;
     }
 
@@ -152,7 +155,7 @@ class InputValidate {
     */
     private function type_alphanumeric($value){
         if (preg_match("/[^a-zA-Z0-9]/i", $value))
-            return "Not alphanumeric!";
+            return lang()->get('validate_type_alphanumeric');
         return false;
     }
 
@@ -168,8 +171,8 @@ class InputValidate {
     */
     private function type_email($value){
         $regexEmail = "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/";
-        if (!preg_match($regexEmail, $value))
-            return "Email is invalid!";
+        if ($value != "" && !preg_match($regexEmail, $value))
+            return lang()->get('validate_type_email');
         return false;
     }
 
@@ -199,7 +202,7 @@ class InputValidate {
     */
     private function prop_empty($property, $value){
         if($property == 'false' && empty($value))
-            return "Cannot be empty!";
+            return lang()->get('validate_prop_empty');
         return false;
     }
 
@@ -216,7 +219,7 @@ class InputValidate {
     */
     private function prop_minlength($property, $value){
         if(is_numeric($property) && strlen($value) < $property )
-            return "Must be longer then ".$property." characters!";
+            return str_replace('[property]', $property, lang()->get('validate_prop_minlength') );
         return false;
     }
 
@@ -233,7 +236,7 @@ class InputValidate {
     */
     private function prop_maxlength($property, $value){
         if(is_numeric($property) && strlen($value) > $property )
-            return "Cannot be longer then ".$property." characters!";
+            return str_replace('[property]', $property, lang()->get('validate_prop_maxlength') );
         return false;
     }
 }
