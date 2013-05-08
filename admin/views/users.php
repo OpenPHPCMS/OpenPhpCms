@@ -7,7 +7,7 @@
 
 <table>
  <tr>
-  <th></th>
+  <th style="min-width:30px"></th>
   <th><?PHP echo lang()->get('users_username') ?></th>
   <th><?PHP echo lang()->get('users_user_role') ?></th>
   <th><?PHP echo lang()->get('users_name') ?></th>
@@ -16,7 +16,7 @@
 </tr>
 <?PHP foreach ($users as $user): ?>
  <tr>
-  <td width="30px">  <a class="right deleteicon" href="<?PHP echo base_url('admin/user_delete.php').'?username='.$user['username'] ?>"> </a>
+  <td width="64px">  <a class="right deleteicon" href="<?PHP echo base_url('admin/user_delete.php').'?username='.$user['username'] ?>"> </a>
         <a class="right editicon" href="<?PHP echo base_url('admin/user_edit.php').'?username='.$user['username'] ?>"> </a>
   </td>
   <td><?PHP echo $user['username'] ?></td>
