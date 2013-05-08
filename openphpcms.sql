@@ -86,7 +86,7 @@ INSERT INTO `OPC_Settings` (`appid`, `setting_name`, `setting_value`) VALUES
 ('core', 'title', 'Open PHP CMS'),
 ('core', 'description', ''),
 ('core', 'title_format', '[title]-[page]'),
-('core', 'admin_email', '')
+('core', 'admin_email', ''),
 ('core', 'language', 'EN');
 
 -- --------------------------------------------------------
