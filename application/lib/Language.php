@@ -41,6 +41,15 @@ class Language {
         return self::$instance;
     }
 
+    private function addLangFile($path) {
+       if(is_file($path)) {
+            require($path);
+            $this->language = array_merge($this->language, $language);
+            return true;
+        } 
+        return false;
+    }
+
     /**
     * addSystemLangFile
     *
@@ -51,12 +60,14 @@ class Language {
     * @return void
     */
     public function addSystemLangFile($file){
+        //Add the default language file (EN)
+        $path = __ADMIN_PATH."languages/EN/".$file.".php";
+        $this->addLangFile($path);
+
+        //Add the configured language file
         $lang = OPC_Settings::get('language');
         $path = __ADMIN_PATH."languages/".$lang."/".$file.".php";
-        if(is_file($path)) {
-            require($path);
-            $this->language = array_merge($this->language, $language);
-        }
+        $this->addLangFile($path);
     }
 
     /**
