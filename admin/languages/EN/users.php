@@ -8,4 +8,9 @@ $language = array (
 	'users_name' 			=> 'Name',
 	'users_surname' 		=> 'Surname',
 	'users_email' 			=> 'Email',
+
+	'users_delete_pop_title'=> 'Delete user',
+	'users_delete_pop_message'=> 'Are you sure you want to delete user "[username]"!',
+	'users_delete_pop_delete'=> 'Delete',
+	'users_delete_pop_cancel'=> 'Cancel',
 );

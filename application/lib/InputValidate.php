@@ -201,7 +201,7 @@ class InputValidate {
     * @return String/boolean
     */
     private function prop_empty($property, $value){
-        if($property == 'false' && empty($value))
+        if($property == 'false' && $value == "")
             return lang()->get('validate_prop_empty');
         return false;
     }

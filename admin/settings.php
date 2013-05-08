@@ -65,7 +65,7 @@ if(isset($_POST['settings_save'])) {
 	 	save_config('base_url', $data['baseurl']);
 	 	save_config('language', $data['language']);
  	
- 		display_succes(lang()->get('settings_success_message'));
+ 		display_success(lang()->get('settings_success_message'));
  		redirect(__ADMIN_FOLDER.'/settings.php');
 	} else {
 		display_error(lang()->get('settings_error_message'));

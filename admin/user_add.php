@@ -62,7 +62,7 @@ if(isset($_POST['user_submit'])){
 		$binds['email'] 	= $data['email'];
 		$db->insert('OPC_Users', $binds);
 
-		display_succes(str_replace('[username]', $data['username'], lang()->get('user_add_succes_message')));
+		display_success(str_replace('[username]', $data['username'], lang()->get('user_add_succes_message')));
 		redirect(__ADMIN_FOLDER.'/users.php');
 	}
 

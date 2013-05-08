@@ -28,17 +28,17 @@ if (!function_exists('display_error')) {
 * ------------------------------------------------------
 */
 
-if (!function_exists('display_succes')) {
+if (!function_exists('display_success')) {
 
-    function display_succes($error = null) {
-        if($error != null) {
+    function display_success($success = null) {
+        if($success != null) {
 
-            $_SESSION['OPC_admin_succes'] = $error;
+            $_SESSION['OPC_admin_success'] = $success;
         
-        } else if(!empty($_SESSION['OPC_admin_succes'])) {
+        } else if(!empty($_SESSION['OPC_admin_success'])) {
             
             require(__ADMIN_PATH."essentials/success_message.php");
-            unset($_SESSION['OPC_admin_succes']);
+            unset($_SESSION['OPC_admin_success']);
 
         }
     }
@@ -64,7 +64,7 @@ if (!function_exists('load_view')) {
 		echo "<section class=\"main\">";
         
         display_error();
-        display_succes();
+        display_success();
         
         if($file != null) {
 
