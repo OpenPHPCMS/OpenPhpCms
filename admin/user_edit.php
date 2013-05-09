@@ -2,18 +2,13 @@
 /* * * Import init * **/
 require('admin_init.php');
 
-/* * * check if user has access * * */
-accessControl(__ROLE_ADMIN);
-
 /* * * Inlude language file * * */
 lang()->addSystemLangFile('user_add');
 lang()->addSystemLangFile('user_edit');
 
-//redirect back when username not set
-if(!isset($_GET['username'])) {
-	display_error(lang()->get('user_edit_no_username'));
-	redirect(__ADMIN_FOLDER.'/users.php');
-}
+//Set username to logedin username when not set
+if(!isset($_GET['username']))
+	$_GET['username'] = $_SESSION['user_username'];
 
 $db = new OPC_Database();
 $db->where('username', $_GET['username']);
@@ -23,6 +18,10 @@ if(empty($user)){
 	display_error(lang()->get('user_edit_user_not_exists'));
 	redirect(__ADMIN_FOLDER.'/users.php');
 }
+
+/* * * check if user has access * * */
+if($_SESSION['user_username'] != $user[0]['username'])
+	accessControl(__ROLE_ADMIN);
 
 //Setting all view data
 //---------------------------------------------------------------- 
@@ -74,7 +73,6 @@ if(isset($_POST['user_submit'])){
 		$db->update('OPC_Users', $binds);
 
 		display_success(str_replace('[username]', $data['username'], lang()->get('user_edit_succes_message')));
-		redirect(__ADMIN_FOLDER.'/users.php');
 	}
 
 	//set error message
@@ -85,8 +83,6 @@ if(isset($_POST['user_submit'])){
 	}
 
 }
-
-
 
 $user_roles = array(
 "0" 	=> lang()->get('common_guest_name'),
