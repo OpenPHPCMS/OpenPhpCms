@@ -14,7 +14,7 @@ $language = array (
 	'user_add_email_info'	=> 'Email of user',
 	'user_add_user_role' 	=> 'User role',
 	'user_add_user_role_info'=> 'User access role',
-	'user_add_save_submit'	=> 'Save',
+	'user_add_save_submit'	=> 'Add user',
 	'user_add_succes_message'=> 'User "[username]" is added',
 	'user_add_error_user_exists'=> 'Username "[username]" already exists!'
 );

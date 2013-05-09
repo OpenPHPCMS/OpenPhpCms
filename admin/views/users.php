@@ -42,7 +42,7 @@
     <h3><?PHP echo lang()->get('users_delete_pop_title'); ?></h3>
     <p><?PHP echo str_replace('[username]', "<span id=\"deleteUsername\"></span>", lang()->get('users_delete_pop_message')) ?></p>
     <br/>
-    <a class="button bluebut" href="#" onclick="deleteUser()"><?PHP echo lang()->get('users_delete_pop_delete'); ?></a> 
+    <a class="button redbut" href="#" onclick="deleteUser()"><?PHP echo lang()->get('users_delete_pop_delete'); ?></a> 
     <a class="button bluebut" href="#" onclick="hideDeletePopUp();"><?PHP echo lang()->get('users_delete_pop_cancel'); ?></a>
   </div>
 </div>
