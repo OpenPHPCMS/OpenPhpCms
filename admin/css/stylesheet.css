@@ -243,6 +243,10 @@ textarea {
 	color: red;
 }
 
+.form_validate_icon {
+	margin-left: 5px;
+}
+
 
 /*buttons*/
 .button, .buttonsmall {
