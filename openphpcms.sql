@@ -109,6 +109,7 @@ CREATE TABLE `OPC_Users` (
 -- Data for table `OPC_Users`
 --
 INSERT INTO `OPC_Users` (`username`, `password`, `level`, `name`, `surname`, `email`, `create_date`) VALUES
-('Admin', '88a019a91e3c0d60c6eec6578fc6490bba2688576276b89f79e9e30f6a6508000c2a99a8db147aa578d16bf9c2e029ee72b36c5face905b7187a25836f7c309af3c0127f', 30, 'Admin', 'Admin', 'Admin', '2013-04-22 18:47:11'),
-('User', 'cb86e3199e65d1cfef1da4393939b6820ce78f7dc809222c324f4ffe34d826cd8c67362b71bd11ef593e7a2baa8f01e57ead75df8b265062e4cc22ce8e00403a1b7db3b4', 10, 'user', 'user', 'user', '2013-04-22 22:40:09'),
-('Dev', 'cdf09597911d0596b7bfe46315594e878adaa3dd82f5a82150ab275eb9c88f420ebf7625bf6d62086a592b41a53b42e6ea458095f86df6982ec003481d2561afe7e9fd17', 20, 'dev', 'dev', 'dev', '2013-04-22 22:40:09');
+('Admin', '88a019a91e3c0d60c6eec6578fc6490bba2688576276b89f79e9e30f6a6508000c2a99a8db147aa578d16bf9c2e029ee72b36c5face905b7187a25836f7c309af3c0127f', 30, 'Admin', 'Php', 'Admin@openphpcms.org', '2013-04-22 18:47:11'),
+('User', 'cb86e3199e65d1cfef1da4393939b6820ce78f7dc809222c324f4ffe34d826cd8c67362b71bd11ef593e7a2baa8f01e57ead75df8b265062e4cc22ce8e00403a1b7db3b4', 10, 'user', 'Php', 'user@openphpcms.org', '2013-04-22 22:40:09'),
+('Dev', 'cdf09597911d0596b7bfe46315594e878adaa3dd82f5a82150ab275eb9c88f420ebf7625bf6d62086a592b41a53b42e6ea458095f86df6982ec003481d2561afe7e9fd17', 20, 'dev', 'Php', 'dev@openphpcms.org', '2013-04-22 22:40:09'),
+('Owner', '48ef2add47ae11b789592ec2f84b30a0f750efade48efddd4ee13583e49a51a56699386cd589b03f8b82aef04f349c9792e2e538b07f69f0d', 40, 'Owner', 'Php', 'owner@openphpcms.org', '2013-06-23 11:55:27');
