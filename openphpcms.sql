@@ -1,4 +1,17 @@
 --
+-- Table structure for table `OPC_Images`
+--
+
+CREATE TABLE IF NOT EXISTS `OPC_Images` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `file_name` varchar(256) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(32) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
 -- Table structure for table `OPC_Menu`
 --
 DROP TABLE IF EXISTS `OPC_Menu`;
