@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".formchange").blur(function() {
+	$(".formchange").change(function() {
 		$('#error_'+$(this).attr("name")).html("");
 		$("#"+$(this).attr("name")+"_icon").attr("src", "images/icons/loading.gif")
 
