@@ -19,6 +19,9 @@ if(empty($user)){
 	redirect(__ADMIN_FOLDER.'/users.php');
 }
 
+//Edit user level
+$data['user_edit_level'] = $user[0]['level'];
+
 /* * * check if user has access * * */
 if($_SESSION['user_username'] != $user[0]['username'])
 	accessControl(__ROLE_ADMIN);
@@ -43,7 +46,6 @@ $data['error_email'] 	= '';
 if(isset($_POST['user_submit'])){
 	$data['username'] 	= $_POST['user_username'];
 	$data['password'] 	= $_POST['user_password'];
-	$data['level'] 		= $_POST['user_level'];
 	$data['name'] 		= $_POST['user_name'];
 	$data['surname'] 	= $_POST['user_surname'];
 	$data['email'] 		= $_POST['user_email'];
@@ -55,10 +57,15 @@ if(isset($_POST['user_submit'])){
 	if(strlen($data['password']) > 0 )
 		$validate->add('password', $data['password'], 'none', 'empty = false; minlength = 6');
 	
-	$validate->add('level', $data['level'], 'numeric', 'empty = false');
 	$validate->add('name', $data['name'], 'alphabet', 'empty = false');
 	$validate->add('surname', $data['surname'], 'alphabet', 'empty = false');
 	$validate->add('email', $data['email'], 'email', 'empty = false');
+
+	//check if admin then check user level edit
+	if(secure()->hasUserAccess(__ROLE_ADMIN) && $data['user_edit_level'] != __ROLE_OWNER){
+		$data['level'] = $_POST['user_level'];
+		$validate->add('level', $data['level'], 'numeric', 'empty = false');
+	}
 
 	$errors = $validate->validate();
 
@@ -66,13 +73,16 @@ if(isset($_POST['user_submit'])){
 		if(strlen($data['password']) > 0 )
 			$binds['password'] 	= secure()->hashPassword($data['password']);
 		
-		$binds['level'] 	= $data['level'];
+		if(secure()->hasUserAccess(__ROLE_ADMIN) && $data['user_edit_level'] != __ROLE_OWNER)
+			$binds['level'] 	= $data['level'];
+		
 		$binds['name'] 		= $data['name'];
 		$binds['surname'] 	= $data['surname'];
 		$binds['email'] 	= $data['email'];
 		$db->update('OPC_Users', $binds);
 
 		display_success(str_replace('[username]', $data['username'], lang()->get('user_edit_succes_message')));
+		//redirect(__ADMIN_FOLDER.'/users.php');
 	}
 
 	//set error message
@@ -83,6 +93,8 @@ if(isset($_POST['user_submit'])){
 	}
 
 }
+
+
 
 $user_roles = array(
 "0" 	=> lang()->get('common_guest_name'),

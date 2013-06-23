@@ -8,8 +8,10 @@ accessControl(__ROLE_ADMIN);
 /* * * Inlude language file * * */
 lang()->addSystemLangFile('users');
 
-function user_role_name($roleID){ 
-	if($roleID >= 30)
+function user_role_name($roleID){
+	if($roleID >= 40)
+		return lang()->get('common_owner_name'); 
+	else if($roleID >= 30)
 		return lang()->get('common_admin_name');
 	else if($roleID >= 20)
 		return lang()->get('common_dev_name');

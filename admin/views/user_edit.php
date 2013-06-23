@@ -32,7 +32,7 @@
 			<input class="textfield" type="text" id="user_email" name="user_email" value="<?PHP echo $email ?>" />
 			<span class="formError"><?PHP echo $error_email ?></span>
 		</p>
-
+		<?PHP if(secure()->hasUserAccess(__ROLE_ADMIN) && $user_edit_level != __ROLE_OWNER): ?>
 		<p>
 			<label class="formlabel"><?PHP echo lang()->get('user_add_user_role') ?></label>	
 			<label class="help"><?PHP echo lang()->get('user_add_user_role_info') ?></label> 		
@@ -41,7 +41,7 @@
 			</select>
 			<span class="formError"><?PHP echo $error_level ?></span>
 		</p>
-
+		<?PHP endif; ?>
 
 		<hr/>
 		<br/>

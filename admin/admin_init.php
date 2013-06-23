@@ -70,6 +70,7 @@ define('__ROLE_GUEST'	, 0);
 define('__ROLE_USER'	, 10);
 define('__ROLE_DEV'		, 20);
 define('__ROLE_ADMIN'	, 30);
+define('__ROLE_OWNER'   , 40);
 
 function secure() {
     return Secure::getInstance();
