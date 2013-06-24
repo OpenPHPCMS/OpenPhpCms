@@ -359,7 +359,7 @@ tr:nth-child(even) {
 	background: white;
 	position: absolute;
 	padding: 15px;
-	top: 30%;
+	top: 15%;
 	right: 50%;
 	border: 2px #47A3DA solid;
 }

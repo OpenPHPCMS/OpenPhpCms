@@ -29,13 +29,17 @@
 function PopUp(p_innerHTML){
     var innerHTML   = p_innerHTML;
     var buttons     = new Array();
-    this.width      = 400; 
+    this.width      = 400;
+    this.formAction = "";
+    this.formMethod = "post"; 
 
-    this.addButton = function(url, name, buttonColor){
+    this.addButton = function(url, name, buttonColor, formButton){
+        formButton = typeof formButton !== 'undefined' ? formButton : false;
         var button          = {};
         button.url          = url;
         button.name         = name;
         button.buttonColor  = buttonColor;
+        button.formButton   = formButton;
         buttons.push(button);
     }
 
@@ -49,17 +53,26 @@ function PopUp(p_innerHTML){
         var buttonsHTML = "";
         for (var i = 0; i < buttons.length; i++) {
             but = buttons[i];
-            buttonsHTML += " <a href='"+but.url+"' class='button "+but.buttonColor+"'>"+but.name+"</a>";
+            if(but.formButton) {
+                buttonsHTML += " <input type='submit' value='"+but.name+"' name='"+but.url+"' class='button "+but.buttonColor+"' />";  
+            } else {
+                buttonsHTML += " <a href='"+but.url+"' class='button "+but.buttonColor+"'>"+but.name+"</a>";
+            }
         }
         buttonsHTML += " <a class='button bluebut' onclick='removePopUp();' href='#'><?PHP echo lang()->get('common_cancel'); ?></a>";
         buttonsDiv.innerHTML = buttonsHTML;
 
+        var form = document.createElement("form");
+        form.setAttribute('method',this.formMethod);
+        form.setAttribute('action',this.formAction);
+        form.appendChild(content);
+        form.appendChild(buttonsDiv);
+
         var popup               = document.createElement("div");
-        popup.id                = 'popup';
+        popup.id                = "popup";
         popup.style.width       = this.width+"px";
         popup.style.marginRight = "-"+((this.width/2)+15)+"px";
-        popup.appendChild(content);
-        popup.appendChild(buttonsDiv);
+        popup.appendChild(form);
         
         var popupOverlay    = document.createElement("div");
         popupOverlay.id     = 'popupOverlay';

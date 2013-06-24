@@ -12,6 +12,11 @@ lang()->addSystemLangFile('images');
 //----------------------------------------------------------------
 $data['image_name'] = "";
 $data['image_file'] = "";
+$data['update_error'] = "false";
+$data['update_id'] 	= "";
+$data['update_url'] = "";
+$data['update_name']= "";
+$data['update_error_message'] = "";
 
 $data['error_image_name'] = "";
 $data['error_image_file'] = ""; 
@@ -52,6 +57,18 @@ if(isset($_POST['image_submit'])) {
 	} else {
 		$data['error_image_file'] = lang()->get('images_no_file_uploaded');
 	}
+}
+
+if(isset($_SESSION['image_edit_id'])) {
+	$data['update_error'] = "true";
+	$data['update_id'] 	= $_SESSION['image_edit_id'];
+	$data['update_name']= $_SESSION['image_edit_name'];
+	$data['update_url'] = $_SESSION['image_edit_url'];
+	$data['update_error_message'] = $_SESSION['image_edit_error'];
+	unset($_SESSION['image_edit_id']);
+	unset($_SESSION['image_edit_name']);
+	unset($_SESSION['image_edit_url']);
+	unset($_SESSION['image_edit_error']);
 }
 
 load_view('images', $data);

@@ -15,4 +15,13 @@ $language = array (
 	'images_no_file_uploaded' => 'No file uploaded!',
 	'images_title' 			=> 'Images',
 	'images_upload_button' 	=> 'Upload image',
+
+	'images_delete_pop_title'=> 'Delete image',
+	'images_delete_pop_message'=> 'Are you sure you want to delete image \"[image]\"!',
+	'images_delete_pop_delete'=> 'Delete',
+
+	'images_update_pop_title'=> 'Edit image',
+	'images_update_pop_save'=> 'Save',
+	'images_update_no_image'=> 'No image selected!',
+	'images_update_succes'=> 'The image ([image]) is saved.',
 );
