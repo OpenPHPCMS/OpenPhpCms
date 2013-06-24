@@ -19,6 +19,7 @@ $language = array (
 	'images_delete_pop_title'=> 'Delete image',
 	'images_delete_pop_message'=> 'Are you sure you want to delete image \"[image]\"!',
 	'images_delete_pop_delete'=> 'Delete',
+	'images_delete_succes'	=> 'The image ([image]) is deleted.',
 
 	'images_update_pop_title'=> 'Edit image',
 	'images_update_pop_save'=> 'Save',

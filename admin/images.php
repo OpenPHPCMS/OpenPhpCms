@@ -22,7 +22,6 @@ $data['error_image_name'] = "";
 $data['error_image_file'] = ""; 
 
 $db = new OPC_Database();
-$data['images'] = $db->select('OPC_Images');
 
 //Handle form when submitted
 //---------------------------------------------------------------- 
@@ -70,5 +69,7 @@ if(isset($_SESSION['image_edit_id'])) {
 	unset($_SESSION['image_edit_url']);
 	unset($_SESSION['image_edit_error']);
 }
+
+$data['images'] = $db->select('OPC_Images');
 
 load_view('images', $data);
