@@ -7,5 +7,6 @@ $language = array (
 	'common_user_name' 		=> 'User',
 	'common_guest_name' 	=> 'Guest',
 
-	'common_no_access' 		=> 'No access!'
+	'common_no_access' 		=> 'No access!',
+	'common_cancel' 		=> 'Cancel',
 );

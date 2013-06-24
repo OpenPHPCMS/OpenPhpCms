@@ -25,7 +25,7 @@
 		<tr>
 			<td rowspan="5">
 				<a href="#">
-					<img src="<?PHP echo base_url('data/images/thumbnails/'.$image['file_name']) ?>">
+					<img src="<?PHP echo base_url('data/images/thumbnails/'.$image['file_name']) ?>" title="<?PHP echo $image['name'] ?>" alt="<?PHP echo $image['name'] ?>">
 				</a>
 			</td>
 		</tr>
