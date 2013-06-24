@@ -70,8 +70,12 @@ if(isset($_POST['user_submit'])){
 	$errors = $validate->validate();
 
 	if(empty($errors)){
-		if(strlen($data['password']) > 0 )
+		if(strlen($data['password']) > 0 ) {
 			$binds['password'] 	= secure()->hashPassword($data['password']);
+			$password = $binds['password'];
+		} else {
+			$password = $user[0]['password'];
+		}
 		
 		if(secure()->hasUserAccess(__ROLE_ADMIN) && $data['user_edit_level'] != __ROLE_OWNER)
 			$binds['level'] 	= $data['level'];
@@ -82,7 +86,15 @@ if(isset($_POST['user_submit'])){
 		$db->update('OPC_Users', $binds);
 
 		display_success(str_replace('[username]', $data['username'], lang()->get('user_edit_succes_message')));
-		//redirect(__ADMIN_FOLDER.'/users.php');
+		if($_SESSION['user_username'] == $user[0]['username']) {
+			$_SESSION['user_password'] 	= $password;
+			$_SESSION['user_level'] 	= $data['level'];
+			$_SESSION['user_name'] 		= $data['name'];
+			$_SESSION['user_surname'] 	= $data['surname'];
+			$_SESSION['user_email'] 	= $data['email'];
+		} else {
+			redirect(__ADMIN_FOLDER.'/users.php');
+		}
 	}
 
 	//set error message
