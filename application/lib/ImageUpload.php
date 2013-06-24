@@ -121,7 +121,7 @@ class ImageUpload {
 			$percentage = $this->maximumWidth / $width;
 			$newwidth 	= $this->maximumWidth;
 			$newheight 	= $height * $percentage;
-		} else if($height > $width && $height->maximumHeight) {
+		} else if($height > $width && $height > $this->maximumHeight) {
 			$percentage	= $this->maximumHeight / $height;
 			$newheight 	= $this->maximumHeight;
 			$newwidth 	= $height * $percentage;

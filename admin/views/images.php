@@ -32,12 +32,18 @@
   }
 
   function imagePopUp(imageName, imageUrl){
+  	var windowHeight 	= $(window).height();
+  	var windowWidth 	= $(window).width();
+  	var width 			= 900;
+  	if(windowWidth < width)
+  		width = windowWidth-50;
+
   	var html = "<h3>"+imageName+"</h3>";
   	html 	+=" <a onclick='removePopUp();' href='#'>";
-  	html 	+= "<img src='"+imageUrl+"' title='"+imageName+"' alt='"+imageName+"'></a>";
+  	html 	+= "<img style='max-width:"+width+"px; max-height: "+(windowHeight-300)+"px;' src='"+imageUrl+"' title='"+imageName+"' alt='"+imageName+"'></a>";
 
   	popup = new PopUp(html);
-  	popup.width = 900;
+  	popup.width = width;
     popup.display();
   }
   	function getUrlDate(name){
@@ -73,15 +79,17 @@
 	<div style="float: left; padding: 5px;">
 	<table>
 		<tr>
-			<td rowspan="5">
+			<td rowspan="5" style="width: 200px;">
 				<a href="#" onclick="imagePopUp('<?PHP echo $image['name']."', '".base_url('data/images/'.$image['file_name']) ?>');">
-					<img src="<?PHP echo base_url('data/images/thumbnails/'.$image['file_name']) ?>" title="<?PHP echo $image['name'] ?>" alt="<?PHP echo $image['name'] ?>">
+					<img src="<?PHP echo base_url('data/images/thumbnails/'.$image['file_name']) ?>" 
+					title="<?PHP echo $image['name'] ?>" alt="<?PHP echo $image['name'] ?>"
+					style="max-height: 120px">
 				</a>
 			</td>
 		</tr>
 		<tr>
 			<td><?PHP echo lang()->get('images_name') ?>:</td>
-			<td><?php echo $image['name'] ?></td>
+			<td style="width: 150px;"><?php echo $image['name'] ?></td>
 		</tr>
 		<tr>
 			<td><?PHP echo lang()->get('images_uploaded_on') ?>:</td>
