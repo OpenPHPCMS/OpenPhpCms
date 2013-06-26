@@ -1,7 +1,7 @@
 --
 -- Table structure for table `OPC_Images`
 --
-
+DROP TABLE IF EXISTS `OPC_Images`;
 CREATE TABLE IF NOT EXISTS `OPC_Images` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
