@@ -24,7 +24,7 @@
 * @author       Maikel Martens
 */
 // ------------------------------------------------------------------------
-class OPC_Menu {
+class Menu {
     private $db;
 
     public function __construct(){
