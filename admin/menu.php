@@ -8,10 +8,11 @@ accessControl(__ROLE_DEV);
 /* * * Inlude language file * * */
 lang()->addSystemLangFile('menu');
 
-$data['id']		= '';
-$data['name'] 	= '';
-$data['link'] 	= '';
-$data['parent'] = '';
+$data['id']			= '';
+$data['name'] 		= '';
+$data['link_select']= 'exturl';
+$data['link_url'] 	= '';
+$data['parent'] 	= '';
 
 $data['error_name'] 	= '';
 $data['error_link'] 	= '';
@@ -24,9 +25,15 @@ $menu = new Menu($db);
 // Save menu item
 // ------------------------------------------------------------------------
 if(isset($_POST['menu_submit'])) {
-	$data['name'] 	= $_POST['name'];
-	$data['link'] 	= $_POST['link'];
-	$data['parent'] = $_POST['parrent'];
+	$data['name'] 		= $_POST['name'];
+	$data['link_select']= $_POST['link_select'];
+	$data['link_url']	= $_POST['link_url'];
+	$data['parent'] 	= $_POST['parrent'];
+
+	if($data['link_select'] == "exturl")
+		$data['link'] = $data['link_url'];
+	else
+		$data['link'] = $data['link_select'];
 
 	load_class('InputValidate','lib');
 	$validate = new InputValidate();
@@ -44,7 +51,7 @@ if(isset($_POST['menu_submit'])) {
 		$binds['order_number'] 	= $menu->latestOrderNumber()+1;
 
 		$db->insert('OPC_Menu', $binds);
-		display_succes( lang()->get('menu_item_added') );
+		display_success( lang()->get('menu_item_added') );
 	} else {
 		foreach ($errors as $input => $input_errors) {
 			foreach ($input_errors as $error) {
@@ -65,6 +72,17 @@ if(isset($_POST['menu_save'])) {
 	}
 }
 // ------------------------------------------------------------------------
+// Create all the options for all the links
+// ------------------------------------------------------------------------
+$data['link_options'] = "";
+$db->reset();
+$pages = $db->select('OPC_Pages');
+foreach ($pages as $page) {
+	$selected = $page['name'] == $data['link_select'] ? 'selected': '';
+	$data['link_options'] .= "<option $selected>"
+	.$page['name']."</option>";
+}
+
 // Create all the options for all the pages
 // ------------------------------------------------------------------------
 $data['parents'] = '<option value="0"> - </option>';
