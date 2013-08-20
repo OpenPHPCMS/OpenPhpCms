@@ -46,7 +46,6 @@ if(empty($item)) {
 		$data['link_url'] = $item[0]['link'];
 	
 	$data['parent'] = $item[0]['parent'];
-	echo $item[0]['parent'];
 }
 
 // Save menu item
