@@ -17,4 +17,8 @@ $language = array (
 	'menu_list_order' 	=> 'Order',
 	'menu_save_order' 	=> 'Save',
 	'menu_item_added' 	=> 'Menu item added.',
+
+	'menu_delete_pop_title' 	=> 'Delete Menu Item',
+	'menu_delete_pop_message' 	=> 'Are you sure you want to delete link \"[link]\"!',
+	'menu_delete_pop_delete' 	=> 'Delete',
 );

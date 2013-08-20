@@ -7,6 +7,18 @@
 			document.getElementById("link_url").style.display = 'none';
 		}
 	}
+
+	function deleteLinkPopUp(item, name){
+	    var html = "<h3><?PHP echo lang()->get('menu_delete_pop_title'); ?></h3>";
+	    html    += "<p><?PHP echo str_replace('[link]', '<span id=\'itemName\'></span>', lang()->get('menu_delete_pop_message')) ?></p>";
+
+	    popup = new PopUp(html);
+	    popup.width = 400;
+	    var url = "<?PHP echo base_url(__ADMIN_FOLDER.'/menu_delete.php?item=') ?>"+item;
+	    popup.addButton(url, "<?PHP echo lang()->get('menu_delete_pop_delete'); ?>", "redbut");
+	    popup.display();
+	    document.getElementById('itemName').innerHTML = name;
+  }
 </script>
 <h1><?PHP echo lang()->get('menu_title') ?></h1>
 
@@ -50,6 +62,7 @@
 
 <table>
 	<tr>
+	<th style="min-width:30px"></th>	
 	<th><?PHP echo lang()->get('menu_list_name') ?></th>
 	<th><?PHP echo lang()->get('menu_list_link') ?></th>
 	<th><?PHP echo lang()->get('menu_list_order') ?></th>

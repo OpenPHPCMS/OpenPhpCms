@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `OPC_Images` (
 --
 DROP TABLE IF EXISTS `OPC_Menu`;
 CREATE TABLE `OPC_Menu` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `link` varchar(256) NOT NULL,
   `parent` int(11) DEFAULT '0',
@@ -39,7 +39,7 @@ INSERT INTO `OPC_Menu` (`id`, `name`, `link`, `parent`, `order_number`) VALUES
 --
 DROP TABLE IF EXISTS `OPC_Pages`;
 CREATE TABLE `OPC_Pages` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `title` varchar(128) NOT NULL,
   `type` varchar(128) NOT NULL,

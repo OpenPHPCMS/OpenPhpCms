@@ -87,7 +87,7 @@ foreach ($pages as $page) {
 // ------------------------------------------------------------------------
 $data['parents'] = '<option value="0"> - </option>';
 foreach ($menu->getMenuItems() as $item) {
-	$data['parents'] .= "<option".($item['name'] == $data['parent'] ? 'selected': '')." value='".$item['id']."'>".$item['name']."</option>\n";
+	$data['parents'] .= "<option".($item['name'] == $data['parent'] ? 'selected': '')." value='".$item['ID']."'>".$item['name']."</option>\n";
 }
 // ------------------------------------------------------------------------
 $data['menu'] = '';
@@ -101,9 +101,14 @@ $itemNr 	= 1;
 foreach ($menuItems as $item) {
 	$childCount = count($item['childeren']);
 	
-	$data['menu'] .= "<tr><td>".$item['name']."</td>\n"
+	$data['menu'] .= "<tr>"
+	."<td width='64px'> \n"
+	."\t<a class='right deleteicon' onclick=\"deleteLinkPopUp('".$item['ID']."','".$item['name']."');\" href='#'> </a>\n"
+	."\t<a class='right editicon' href='".base_url('admin/menu_edit.php')."'> </a>\n"
+	."</td>\n"
+	."<td>".$item['name']."</td>\n"
 	."<td>".$item['link']."</td>\n"
-	."<td><select name='".$item['id']."'>\n";
+	."<td><select name='".$item['ID']."'>\n";
 	
 	for($index=1; $index <= $itemCount; $index++)
 		$data['menu'] .= "<option ".($index == $item['order_number'] ? 'selected': '').">".$index."</option>\n";
@@ -111,9 +116,14 @@ foreach ($menuItems as $item) {
 	$data['menu'] .= "</select></td></tr>\n";
 	foreach ($item['childeren'] as $child) {
 
-		$data['menu'] .= "<tr><td> &nbsp;&nbsp;&nbsp;- ".$child['name']."</td>\n"
+		$data['menu'] .= "<tr>"
+		."<td width='64px'> \n"
+		."\t<a class='right deleteicon' onclick=\"deleteLinkPopUp('".$child['ID']."','".$child['name']."');\" href='#'> </a>\n"
+		."\t<a class='right editicon' href='".base_url('admin/menu_edit.php')."'> </a>\n"
+		."</td>\n"
+		."<td> &nbsp;&nbsp;&nbsp;- ".$child['name']."</td>\n"
 		."<td> &nbsp;&nbsp;&nbsp;- ".$child['link']."</td>\n"
-		."<td> &nbsp;&nbsp;&nbsp;- <select name='".$child['id']."'>\n";
+		."<td> &nbsp;&nbsp;&nbsp;- <select name='".$child['ID']."'>\n";
 		
 		for($index=1; $index <= $childCount; $index++)
 			$data['menu'] .= "<option ".($index == $child['order_number'] ? 'selected': '').">".$index."</option>\n";

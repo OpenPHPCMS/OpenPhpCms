@@ -74,7 +74,7 @@ class Menu {
     public function getMenu(){
         $menu = $this->getMenuItems();
         foreach ($menu as $key => $item) {
-            $menu[$key]['childeren'] = $this->getMenuItems($item['id']);
+            $menu[$key]['childeren'] = $this->getMenuItems($item['ID']);
         }
         return $menu;
     }
