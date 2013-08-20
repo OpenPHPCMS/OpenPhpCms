@@ -51,6 +51,7 @@ if(isset($_POST['menu_submit'])) {
 		$binds['order_number'] 	= $menu->latestOrderNumber()+1;
 
 		$db->insert('OPC_Menu', $binds);
+		$menu->createCache();
 		display_success( lang()->get('menu_item_added') );
 	} else {
 		foreach ($errors as $input => $input_errors) {
@@ -70,6 +71,7 @@ if(isset($_POST['menu_save'])) {
 		$db->where('id', $key);
 		$db->update('OPC_Menu', $binds);
 	}
+	$menu->createCache();
 }
 // ------------------------------------------------------------------------
 // Create all the options for all the links
@@ -134,5 +136,4 @@ foreach ($menuItems as $item) {
 	$itemNr++;
 }
 // ------------------------------------------------------------------------
-
 load_view('menu', $data);

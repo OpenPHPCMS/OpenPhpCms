@@ -78,4 +78,58 @@ class Menu {
         }
         return $menu;
     }
+
+    /**
+    * createCache
+    *
+    * Create a cache of the menu that is used by the frontend.
+    *
+    * @access public
+    * @return void
+    */
+    public function createCache(){
+        $fileName = __SITE_PATH."data/cache/menu.php";
+        if(file_exists($fileName))
+            unlink($fileName);
+
+        $fileHandle = fopen($fileName, 'w');
+        $menu = $this->getMenu();
+        $cache = "<div id='opc_menu'>\n<ul>\n";
+
+        foreach ($menu as $item) { 
+            $cache .= " <li>\n"
+                    . "  <a href='".$this->getUrl($item['link'])."'>".$item['name']."</a>\n";
+                
+                if(!empty($item['childeren'])) {
+                    $cache .= "\t<ul>\n";
+                    foreach ($item['childeren'] as $child) {
+                        $cache .= "\t <li>\n"
+                                . "\t  <a href='".$this->getUrl($child['link'])."'>".$child['name']."</a>\n"
+                                . "\t </li>\n";
+                    }
+                    $cache .= "\t</ul>\n";
+                }
+
+            $cache .= " </li>\n";
+        }
+
+        $cache .= "</ul>\n</div>\n";
+
+        fwrite($fileHandle, $cache);
+        fclose($fileHandle);
+    }
+
+    /**
+    * getUrl
+    *
+    * Get the url from an item link.
+    *
+    * @access private
+    * @return String    url
+    */
+    private function getUrl($link) {
+        if(strlen($link) > 5 && strtolower( substr($link, 0, 4) ) == "http")
+            return $link;
+        return base_url( str_replace(' ', '_', $link) );
+    }
 }
