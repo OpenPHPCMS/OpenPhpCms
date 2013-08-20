@@ -48,7 +48,7 @@ if(isset($_POST['menu_submit'])) {
 		$binds['name'] 			= $data['name'];
 		$binds['link'] 			= $data['link'];
 		$binds['parent'] 		= $data['parent'];
-		$binds['order_number'] 	= $menu->latestOrderNumber()+1;
+		$binds['order_number'] 	= $menu->latestOrderNumber($data['parent'])+1;
 
 		$db->insert('OPC_Menu', $binds);
 		$menu->createCache();
@@ -89,7 +89,7 @@ foreach ($pages as $page) {
 // ------------------------------------------------------------------------
 $data['parents'] = '<option value="0"> - </option>';
 foreach ($menu->getMenuItems() as $item) {
-	$data['parents'] .= "<option".($item['name'] == $data['parent'] ? 'selected': '')." value='".$item['ID']."'>".$item['name']."</option>\n";
+	$data['parents'] .= "<option ".($item['ID'] == $data['parent'] ? 'selected': '')." value='".$item['ID']."'>".$item['name']."</option>\n";
 }
 // ------------------------------------------------------------------------
 $data['menu'] = '';
@@ -106,7 +106,7 @@ foreach ($menuItems as $item) {
 	$data['menu'] .= "<tr>"
 	."<td width='64px'> \n"
 	."\t<a class='right deleteicon' onclick=\"deleteLinkPopUp('".$item['ID']."','".$item['name']."');\" href='#'> </a>\n"
-	."\t<a class='right editicon' href='".base_url('admin/menu_edit.php')."'> </a>\n"
+	."\t<a class='right editicon' href='".base_url('admin/menu_edit.php?item=').$item['ID']."'> </a>\n"
 	."</td>\n"
 	."<td>".$item['name']."</td>\n"
 	."<td>".$item['link']."</td>\n"
@@ -121,7 +121,7 @@ foreach ($menuItems as $item) {
 		$data['menu'] .= "<tr>"
 		."<td width='64px'> \n"
 		."\t<a class='right deleteicon' onclick=\"deleteLinkPopUp('".$child['ID']."','".$child['name']."');\" href='#'> </a>\n"
-		."\t<a class='right editicon' href='".base_url('admin/menu_edit.php')."'> </a>\n"
+		."\t<a class='right editicon' href='".base_url('admin/menu_edit.php?item=').$child['ID']."'> </a>\n"
 		."</td>\n"
 		."<td> &nbsp;&nbsp;&nbsp;- ".$child['name']."</td>\n"
 		."<td> &nbsp;&nbsp;&nbsp;- ".$child['link']."</td>\n"
