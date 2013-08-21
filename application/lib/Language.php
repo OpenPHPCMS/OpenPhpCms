@@ -80,9 +80,14 @@ class Language {
     * @return void
     */
     public function addPageLangFile($page){
-        /** 
-        * @todo 
-        */
+        //Add the default language file (EN)
+        $path = __APPLICATION_PATH."pages/$page/languages/EN.php";
+        $this->addLangFile($path);
+
+        //Add the configured language file
+        $lang = OPC_Settings::get('language');
+        $path = __APPLICATION_PATH."pages/".$page."/languages/".$lang.".php";
+        $this->addLangFile($path);
     }
 
     /**
