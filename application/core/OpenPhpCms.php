@@ -6,6 +6,12 @@
 * ------------------------------------------------------
 */
 require(__APPLICATION_PATH . 'core/Common.php');
+/* load class OPC_Page */
+load_class("Page", "core");
+/* load class OPC_PageFactory */
+load_class("PageFactory", "core");
+/* load class OPC_PageFactory */
+load_class("Router", "core");
 
 /*
 * ------------------------------------------------------
@@ -28,4 +34,34 @@ session_set_save_handler(
 * ------------------------------------------------------
 */
 OPC_Settings::init();
+
+/*
+* ------------------------------------------------------
+*  Load the OPC_Language class and add common system language files
+* ------------------------------------------------------
+*/
+load_class('Language', 'lib');
+
+function lang() {
+    return Language::getInstance();
+}
+
+/*
+* ------------------------------------------------------
+*  Get page if page is null display 404 page and die()
+* ------------------------------------------------------
+*/
+$route 	= new OPC_Router();
+$page 	= $route->getPage();
+
+if($page == null) {
+	require(__APPLICATION_PATH.'templates/errors/404.php');
+	die();
+}
+
+/*
+* ------------------------------------------------------
+*  Load and display template
+* ------------------------------------------------------
+*/
 

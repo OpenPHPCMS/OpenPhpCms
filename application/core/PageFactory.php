@@ -60,9 +60,10 @@ class OPC_PageFactory {
 
 			//when page exists create object and fill with data
 			if(!empty($result)){
-				$page = new OPC_Page($type, $result[0]['ID']);
-				$page->title = $result[0]['title'];
-				$page->name = $result[0]['name'];
+				$page 			= new OPC_Page($type, $result[0]['ID']);
+				$page->title 	= $result[0]['title'];
+				$page->name 	= $result[0]['name'];
+				$page->layout 	= $result[0]['layout'];
 
 				//get typeObject data
 				$db->reset();
@@ -78,6 +79,33 @@ class OPC_PageFactory {
 				$page->typeObject = new $class( array() );
 			}
 		}
+		return $page;
+	}
+
+	public static function createPageObject($result){
+		if(!isset($result['ID']))
+			return null;
+
+		$file = __APPLICATION_PATH.'pages/'.$result['type'].'/'.$result['type'].'.php';
+		if(!is_file($file))
+			return null;
+
+		require($file);
+		$class = 'PAGE_'.$result['type'];
+
+		$page 			= new OPC_Page($result['type'], $result['ID']);
+		$page->title 	= $result['title'];
+		$page->name 	= $result['name'];
+		$page->layout 	= $result['layout'];
+
+		//get typeObject data
+		$db = new OPC_Database();
+		$db->where('page_id', $page->id);
+		$result = $db->select('OPC_Page_content');
+
+		//Create typeObject and add to OPC_Page
+		$page->typeObject = new $class( $result, $page->id );
+
 		return $page;
 	}
 }
