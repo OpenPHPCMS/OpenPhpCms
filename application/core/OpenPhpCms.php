@@ -12,6 +12,8 @@ load_class("Page", "core");
 load_class("PageFactory", "core");
 /* load class OPC_PageFactory */
 load_class("Router", "core");
+/* load class OPC_PageFactory */
+load_class("Template", "core");
 
 /*
 * ------------------------------------------------------
@@ -64,4 +66,5 @@ if($page == null) {
 *  Load and display template
 * ------------------------------------------------------
 */
-
+$template = new OPC_Template();
+$template->displayPage($page);
