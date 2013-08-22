@@ -80,7 +80,7 @@ CREATE TABLE `OPC_Page_content` (
 --
 
 INSERT INTO `OPC_Page_content` (`page_id`, `name`, `value`) VALUES
-(4, 'content', '<h3>Open Php Cms</h3>\r\n\r\n<p>\r\n  This daily build will be updated every day on 23.59.<br />\r\n</p>\r\n<p>\r\n You can visit the admin panel <a href="<?PHP echo base_url(''admin'') ?> ">here</a>\r\n</p>\r\n<p>Admin panel accounts: </p>\r\n<table>\r\n  <tr>\r\n   <th>Username</th>\r\n   <th>Password</th>\r\n  </tr>\r\n<tr>\r\n  <td>admin</td>\r\n  <td>admin</td>\r\n</tr>\r\n<tr>\r\n <td>dev</td>\r\n  <td>dev</td>\r\n</tr>\r\n<tr>\r\n <td>user</td>\r\n <td>user</td>\r\n</tr>\r\n</table>'),
+(4, 'content', '<h3>Open Php Cms</h3>\r\n\r\n<p>\r\n  This daily build will be updated every day on 23.59.<br />\r\n</p>\r\n<p>\r\n You can visit the admin panel <a href="http://dailybuild.openphpcms.org/admin">here</a>\r\n</p>\r\n<p>Admin panel accounts: </p>\r\n<table>\r\n  <tr>\r\n   <th>Username</th>\r\n   <th>Password</th>\r\n  </tr>\r\n<tr>\r\n  <td>admin</td>\r\n  <td>admin</td>\r\n</tr>\r\n<tr>\r\n <td>dev</td>\r\n  <td>dev</td>\r\n</tr>\r\n<tr>\r\n <td>user</td>\r\n <td>user</td>\r\n</tr>\r\n</table>'),
 (5, 'content', '<p>About</p>');
 -- --------------------------------------------------------
 --
