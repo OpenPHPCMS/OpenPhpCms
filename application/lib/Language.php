@@ -71,6 +71,26 @@ class Language {
     }
 
     /**
+    * addAppLangFile
+    *
+    *Add an application language file to OPC_Language
+    *
+    * @access public
+    * @param  String File name  
+    * @return void
+    */
+    public function addAppLangFile($file){
+        //Add the default language file (EN)
+        $path = __APPLICATION_PATH."languages/EN/".$file.".php";
+        $this->addLangFile($path);
+
+        //Add the configured language file
+        $lang = OPC_Settings::get('language');
+        $path = __APPLICATION_PATH."languages/".$lang."/".$file.".php";
+        $this->addLangFile($path);
+    }
+
+    /**
     * addPageLangFile
     *
     * Add an page language file to OPC_Language

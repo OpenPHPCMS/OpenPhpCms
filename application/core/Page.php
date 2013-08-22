@@ -46,7 +46,7 @@ class OPC_Page {
 		$this->db 	= new OPC_Database();
 		$this->type = $type;
 		$this->id 	= $id;
-		lang()->addSystemLangFile('page');
+		lang()->addAppLangFile('page');
 	}
 
 	/**
