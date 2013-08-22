@@ -30,7 +30,7 @@ class InputValidate {
     private $properties     = array('empty', 'minlength', 'maxlength');
 
     public function __construct(){
-        lang()->addSystemLangFile('validate');
+        lang()->addAppLangFile('validate');
     }
 
     /**

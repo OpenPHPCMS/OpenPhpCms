@@ -53,7 +53,7 @@ class ImageUpload {
     	$this->maximumHeight 		= 900;
     	$this->thumbnailDimension 	= 200;
     	$this->uploadedImage		= $image;
-    	lang()->addSystemLangFile('ImageUpload');
+    	lang()->addAppLangFile('ImageUpload');
     }
 
     /**
