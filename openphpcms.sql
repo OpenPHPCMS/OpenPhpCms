@@ -26,25 +26,32 @@ CREATE TABLE `OPC_Menu` (
 --
 -- Data for table `OPC_Menu`
 --
-INSERT INTO `OPC_Menu` (`id`, `name`, `link`, `parent`, `order_number`) VALUES
-(1, 'Home', 'home', 0, 1),
-(2, 'Contact', 'contact', 0, 2),
-(3, 'about', 'about', 0, 3),
-(4, 'about sub', 'about sub', 3, 1),
-(5, 'contact sub', 'contact sub', 2, 1);
+INSERT INTO `OPC_Menu` (`ID`, `name`, `link`, `parent`, `order_number`) VALUES
+(13, 'Home', 'Home', 0, 1),
+(14, 'About', 'About', 0, 2),
+(15, 'Contact', 'http://forum.openphpcms.org/', 0, 3),
+(16, 'About sub page', 'About', 14, 1);
 
 -- --------------------------------------------------------
 --
 -- Table structure for table `OPC_Pages`
 --
-DROP TABLE IF EXISTS `OPC_Pages`;
-CREATE TABLE `OPC_Pages` (
+CREATE TABLE IF NOT EXISTS `OPC_Pages` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `title` varchar(128) NOT NULL,
   `type` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `layout` varchar(256) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Data for table `OPC_Pages`
+--
+
+INSERT INTO `OPC_Pages` (`ID`, `name`, `title`, `type`, `layout`) VALUES
+(4, 'Home', 'Home', 'Static', 'default'),
+(5, 'About', 'About', 'Static', 'default');
 -- --------------------------------------------------------
 --
 -- Table structure for table `OPC_Page_components`
@@ -67,6 +74,14 @@ CREATE TABLE `OPC_Page_content` (
   `value` text NOT NULL,
   PRIMARY KEY (`page_id`,`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Data for table `OPC_Page_content`
+--
+
+INSERT INTO `OPC_Page_content` (`page_id`, `name`, `value`) VALUES
+(4, 'content', '<h3>Open Php Cms</h3>\r\n\r\n<p>\r\n  This daily build will be updated every day on 23.59.<br />\r\n</p>\r\n<p>\r\n You can visit the admin panel <a href="<?PHP echo base_url(''admin'') ?> ">here</a>\r\n</p>\r\n<p>Admin panel accounts: </p>\r\n<table>\r\n  <tr>\r\n   <th>Username</th>\r\n   <th>Password</th>\r\n  </tr>\r\n<tr>\r\n  <td>admin</td>\r\n  <td>admin</td>\r\n</tr>\r\n<tr>\r\n <td>dev</td>\r\n  <td>dev</td>\r\n</tr>\r\n<tr>\r\n <td>user</td>\r\n <td>user</td>\r\n</tr>\r\n</table>'),
+(5, 'content', '<p>About</p>');
 -- --------------------------------------------------------
 --
 -- Table structure for table `OPC_Sessions`
@@ -91,7 +106,7 @@ CREATE TABLE `OPC_Settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Ddata for table `OPC_Settings`
+-- Data for table `OPC_Settings`
 --
 INSERT INTO `OPC_Settings` (`appid`, `setting_name`, `setting_value`) VALUES
 ('core', 'base_url', 'http://dailybuild.openphpcms.org/'),
