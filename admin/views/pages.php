@@ -20,6 +20,7 @@
  	<th style="min-width:30px"></th>
   	<th><?PHP echo lang()->get('pages_name') ?></th>
   	<th><?PHP echo lang()->get('pages_type') ?></th>
+  	<th><?PHP echo lang()->get('pages_layout') ?></th>
 </tr>
 <?PHP foreach ($pages as $page): ?>
  <tr>
@@ -29,6 +30,7 @@
   </td>
   <td><?PHP echo $page['name'] ?></td>
   <td><?PHP echo $page['type'] ?></td>
+  <td><?PHP echo $page['layout'] ?></td>
  </tr>
 <?PHP endforeach; ?>
 </table>

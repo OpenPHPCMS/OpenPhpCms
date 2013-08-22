@@ -8,5 +8,5 @@ $language = array (
 	'pages_type_info'	=> 'The type of page you want<br>to create.',
 	'pages_name'		=> 'Name',
 	'pages_type'		=> 'Type',
-
+	'pages_layout'		=> 'Layout',
 );
