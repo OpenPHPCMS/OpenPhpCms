@@ -11,5 +11,7 @@ $language = array (
 	'page_add_name_info' 		=> 'Url name',
 	'page_add_title_label' 		=> 'Title',
 	'page_add_title_info' 		=> 'Page title',
+	'page_add_layout_label' 	=> 'Layout',
+	'page_add_layout_info' 		=> 'Page layout',
 	'page_add_save' 			=> 'Save',
 );

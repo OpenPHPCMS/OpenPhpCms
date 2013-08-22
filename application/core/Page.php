@@ -29,6 +29,7 @@ class OPC_Page {
 	public $title;
 	public $type;
 	public $typeObject;
+	public $layout;
 
 	private $db;
 
@@ -60,6 +61,7 @@ class OPC_Page {
 		$data['name'] 	= $this->name;
 		$data['title'] 	= $this->title;
 		$data['type'] 	= $this->type;
+		$data['layout'] = $this->layout;
 
 		return array_merge($data, $this->typeObject->getData());
 	}
@@ -114,9 +116,10 @@ class OPC_Page {
 	public function save(){
 		$this->db->reset();
 		
-		$binds['name'] = $this->name;
+		$binds['name'] 	= $this->name;
 		$binds['title'] = $this->title;
-		$binds['type'] = $this->type;
+		$binds['type'] 	= $this->type;
+		$binds['layout']= $this->layout;
 
 		if($this->id == null) {
 			$this->db->insert('OPC_Pages', $binds);

@@ -11,6 +11,8 @@ lang()->addSystemLangFile('page_add');
 $data['type'] 	= null;
 $data['name'] 	= '';
 $data['title'] 	= '';
+$data['layout'] = '';
+$data['layouts']= '';
 
 //Get page type and give error when not selected
 // ------------------------------------------------------------------------
@@ -52,7 +54,7 @@ if(!is_file($class_file) || !is_file($form_file) || !is_file($content_file)){
 
 // Load page type language file.
 // ------------------------------------------------------------------------	
-lang()->addPageLangFile( $data['type'] );
+lang()->addPageLangFile( $data['type'] );	
 
 // Load required classes and create OPC_Page object
 // ------------------------------------------------------------------------	
@@ -72,8 +74,9 @@ foreach ($page->getData() as $key => $value) {
 // Process form when submitted
 // ------------------------------------------------------------------------
 if(isset($_POST['page_submit'])){
-	$page->name = $_POST['name'];
-	$page->title = $_POST['title'];
+	$page->name 	= $_POST['name'];
+	$page->title 	= $_POST['title'];
+	$page->layout  	= $_POST['layout'];
 
 	unset($_POST['page_submit']);
 	unset($_POST['name']);
@@ -114,6 +117,19 @@ function template_url($request = ''){
     } else {
        return $baseURL.'/application/pages/'.__PAGE_TYPE.'/'.$request; 
     }
+}
+
+// Get the layouts
+// ------------------------------------------------------------------------
+$path_layout= __APPLICATION_PATH.'/templates/layouts/';
+foreach (scandir($path_layout) as $file) {
+	if($file != '.' && $file != '..' && $file != 'index.html' && is_file($path_layout.$file)) {
+		$x = explode('.', $file);
+		unset($x[count($x)-1]);
+		$layout = implode('.', $x);
+		$selected = $layout == $data['layout'] ? 'selected' : '';
+		$data['layouts'] .= "<option $selected>$layout</option>";
+	}		
 }
 
 load_view('page_add', $data);

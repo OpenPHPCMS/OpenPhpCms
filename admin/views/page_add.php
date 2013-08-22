@@ -15,6 +15,15 @@
 		<input class="textfield" type="text" name="title" value="<?php echo $title ?>"/>
 		<span class="formError"><?PHP echo $error_title ?></span>			
 	</p>
+
+	<p>
+		<label class="formlabel"><?PHP echo lang()->get('page_add_layout_label') ?></label> 		
+		<label class="help"><?PHP echo lang()->get('page_add_layout_info') ?></label> 					
+		<select name="layout">
+			<?PHP echo $layouts ?>
+		</select>
+		<span class="formError"><?PHP echo $error_layout ?></span>			
+	</p>	
 	
 	<?PHP require($page_form_file) ?>
 	
